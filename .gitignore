@@ -1,0 +1,6 @@
+# Hidden / excluded apps
+beat/
+
+# OS / Editor files
+.DS_Store
+.claude/

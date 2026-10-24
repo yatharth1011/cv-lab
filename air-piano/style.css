@@ -1,0 +1,239 @@
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+#stage {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  transform: scaleX(-1);
+  background: #000;
+}
+
+.topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 20px;
+  z-index: 10;
+  flex-wrap: wrap;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  font-size: 13px;
+  margin-right: auto;
+}
+
+.brand-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--cyan), var(--pink));
+  box-shadow: 0 0 12px var(--cyan);
+}
+
+.tone-select {
+  display: flex;
+  padding: 4px;
+  gap: 2px;
+}
+
+.tone-opt {
+  font: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink-dim);
+  background: transparent;
+  border: none;
+  padding: 7px 12px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.tone-opt.active {
+  color: var(--ink);
+  background: linear-gradient(135deg, rgba(125, 211, 252, 0.25), rgba(240, 171, 252, 0.25));
+  box-shadow: 0 0 16px rgba(125, 211, 252, 0.2);
+}
+
+.vol {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  font-size: 13px;
+}
+
+.vol input[type="range"] {
+  width: 90px;
+  accent-color: var(--cyan);
+}
+
+.hint {
+  position: fixed;
+  top: 46%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 8;
+  padding: 28px 40px;
+  text-align: center;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.hint[hidden] {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.96);
+  pointer-events: none;
+}
+
+.hint-hands {
+  font-size: 34px;
+  margin-bottom: 6px;
+  animation: float 2.4s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.hint-title {
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  margin-bottom: 6px;
+}
+
+.hint-sub {
+  color: var(--ink-dim);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.hud {
+  position: fixed;
+  bottom: 28px;
+  width: 200px;
+  padding: 16px 18px;
+  z-index: 8;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  pointer-events: none;
+}
+
+.hud.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hud.lower {
+  left: 24px;
+  --glow: 125, 211, 252;
+}
+
+.hud.upper {
+  right: 24px;
+  --glow: 240, 171, 252;
+}
+
+.hud-tag {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(var(--glow), 0.9);
+  margin-bottom: 8px;
+}
+
+.hud-note {
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 1;
+  margin-bottom: 12px;
+  font-variant-numeric: tabular-nums;
+}
+
+.hud-meter {
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+
+.hud-meter-fill {
+  height: 100%;
+  width: 0%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(var(--glow), 0.5), rgba(var(--glow), 1));
+  box-shadow: 0 0 12px rgba(var(--glow), 0.7);
+  transition: width 0.08s linear;
+}
+
+.hud-meter-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 9.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+  margin-top: 6px;
+  margin-bottom: 12px;
+}
+
+.hud-meter-dist {
+  position: relative;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: visible;
+}
+
+.hud-meter-dist .hud-meter-fill {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 0%;
+  left: 50%;
+  background: rgba(var(--glow), 0.9);
+  transition: width 0.08s linear, left 0.08s linear;
+}
+
+.hud-meter-center {
+  position: absolute;
+  left: 50%;
+  top: -3px;
+  bottom: -3px;
+  width: 1px;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.hud-dist-readout {
+  text-align: center;
+  font-size: 10.5px;
+  color: var(--ink-dim);
+  font-variant-numeric: tabular-nums;
+  margin-top: 2px;
+}
+
+.hud .hud-meter-label:last-of-type {
+  margin-bottom: 0;
+}

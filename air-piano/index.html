@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Air Keys — a theremin for your hands</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../shared/styles.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="bg-aurora"></div>
+
+    <canvas id="stage"></canvas>
+
+    <div class="hint glass" id="hint">
+      <div class="hint-hands">🖐️ 🎧 🖐️</div>
+      <div class="hint-title">Move your hands to play in 3D around your head</div>
+      <div class="hint-sub">
+        Height = pitch · Left of your head = low register, right = high register<br />
+        Open your hand for a full tone, close it for a solo tone<br />
+        Reach behind your head and the sound moves behind you too — it tracks your head, not the camera<br />
+        <strong>Wear headphones for the full 3D surround effect</strong>
+      </div>
+    </div>
+
+    <header class="topbar">
+      <a class="btn icon-btn" href="../index.html" title="Back">←</a>
+      <div class="brand"><span class="brand-dot"></span>AIR KEYS</div>
+      <div class="pill" id="handsPill"><span class="dot" id="handsDot"></span><span id="handsLabel">searching…</span></div>
+      <div class="pill" title="Binaural 3D audio — best on headphones">🎧 3D HRTF</div>
+
+      <div class="tone-select glass" id="toneSelect">
+        <button class="tone-opt active" data-tone="warm">Warm</button>
+        <button class="tone-opt" data-tone="glass">Glass</button>
+        <button class="tone-opt" data-tone="bright">Bright</button>
+      </div>
+
+      <div class="vol glass">
+        <span>🔊</span>
+        <input type="range" id="volume" min="0" max="1" step="0.01" value="0.7" />
+      </div>
+    </header>
+
+    <div class="hud lower glass" id="hudLower">
+      <div class="hud-tag">Low register · left of head</div>
+      <div class="hud-note" id="hudLowerNote">—</div>
+      <div class="hud-meter"><div class="hud-meter-fill" id="hudLowerFill"></div></div>
+      <div class="hud-meter-label"><span>solo</span><span>full</span></div>
+      <div class="hud-meter hud-meter-dist"><div class="hud-meter-center"></div><div class="hud-meter-fill" id="hudLowerDistFill"></div></div>
+      <div class="hud-meter-label"><span>in front</span><span>behind</span></div>
+      <div class="hud-dist-readout" id="hudLowerDist">at head</div>
+    </div>
+
+    <div class="hud upper glass" id="hudUpper">
+      <div class="hud-tag">High register · right of head</div>
+      <div class="hud-note" id="hudUpperNote">—</div>
+      <div class="hud-meter"><div class="hud-meter-fill" id="hudUpperFill"></div></div>
+      <div class="hud-meter-label"><span>solo</span><span>full</span></div>
+      <div class="hud-meter hud-meter-dist"><div class="hud-meter-center"></div><div class="hud-meter-fill" id="hudUpperDistFill"></div></div>
+      <div class="hud-meter-label"><span>in front</span><span>behind</span></div>
+      <div class="hud-dist-readout" id="hudUpperDist">at head</div>
+    </div>
+
+    <div class="loader-screen" id="loader">
+      <div class="spinner"></div>
+      <div id="loaderText">Warming up the model…</div>
+    </div>
+
+    <div class="error-screen" id="errorScreen">
+      <div style="font-size: 40px">📷</div>
+      <h2 style="margin: 0">Camera unavailable</h2>
+      <p class="hint-sub" id="errorText" style="max-width: 420px">
+        This app needs camera access. Allow it in your browser's site settings and reload.
+      </p>
+      <a class="btn" href="../index.html">Back home</a>
+    </div>
+
+    <script type="module" src="app.js"></script>
+  </body>
+</html>

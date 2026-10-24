@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Frame — finger viewfinder</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../shared/styles.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="bg-aurora"></div>
+
+    <canvas id="stage"></canvas>
+
+    <div class="hint glass" id="hint">
+      <div class="hint-hands">🤙 🤙</div>
+      <div class="hint-title">Show both hands</div>
+      <div class="hint-sub">Touch thumbs &amp; index fingers together to frame the shot</div>
+    </div>
+
+    <header class="topbar">
+      <a class="btn icon-btn" href="../index.html" title="Back">←</a>
+      <div class="brand">
+        <span class="brand-dot"></span>
+        FRAME
+      </div>
+      <div class="pill" id="handsPill"><span class="dot" id="handsDot"></span><span id="handsLabel">searching…</span></div>
+      <div class="pill" id="fpsPill">-- fps</div>
+    </header>
+
+    <footer class="dock">
+      <div class="filters glass" id="filters"></div>
+      <button class="shutter" id="shutter" title="Capture photo">
+        <span class="shutter-ring"></span>
+      </button>
+    </footer>
+
+    <div class="flash" id="flash"></div>
+
+    <div class="loader-screen" id="loader">
+      <div class="spinner"></div>
+      <div id="loaderText">Warming up the model…</div>
+    </div>
+
+    <div class="error-screen" id="errorScreen">
+      <div style="font-size: 40px">📷</div>
+      <h2 style="margin: 0">Camera unavailable</h2>
+      <p class="hint-sub" id="errorText" style="max-width: 420px">
+        This app needs camera access. Allow it in your browser's site settings and reload.
+      </p>
+      <a class="btn" href="../index.html">Back home</a>
+    </div>
+
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
